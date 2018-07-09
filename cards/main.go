@@ -10,12 +10,23 @@ import (
 	- string
 	- int
 	- float64
+
+	Array vs Slice
+	- Array = List that have fixed length
+	- Slice = List that can grow or shrink
 */
 
 func main() {
-	card := newCard()
+	// Create a Slice
+	cards := []string{"Ace of Diamonds", newCard()}
 
-	fmt.Println(card)
+	// append() is immutable
+	cards = append(cards, "Six of Spades")
+
+	// For Loops
+	for index, card := range cards {
+		fmt.Println(index, card)
+	}
 }
 
 func newCard() string {
