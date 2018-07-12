@@ -23,12 +23,15 @@ func main() {
 		},
 	}
 
+	// &variable = Give me the memory address of the value this variable is pointing at
 	jimPointer := &jim
 	jimPointer.updateName("Jimmy")
 	jim.print()
 }
 
+// *type = type description of pointer
 func (pointerToPerson *person) updateName(newFirstName string) {
+	// *pointer = Give me the value this memory address is pointing at
 	(*pointerToPerson).firstName = newFirstName
 }
 
