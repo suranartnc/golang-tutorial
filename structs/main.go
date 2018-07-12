@@ -37,3 +37,16 @@ func (pointerToPerson *person) updateName(newFirstName string) {
 func (p person) print() {
 	fmt.Printf("%+v", p)
 }
+
+/*
+	Pass by Value
+	- int, float, string, bool
+	- structs
+
+	Pass by Reference
+	- slices
+	- maps
+	- channels
+	- pointers
+	- functions
+*/
