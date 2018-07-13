@@ -5,16 +5,18 @@ import (
 )
 
 func main() {
-	// Create an empty map
+	colors := map[string]string{
+		"red":   "#ff000",
+		"green": "#4bf745",
+		"white": "#ffffff",
+	}
 
-	// Equivalent to
-	// var colors map[string]string
-	colors := make(map[string]string)
+	printMap(colors)
+}
 
-	colors["red"] = "#ff000"
-	colors["green"] = "#4bf745"
-
-	delete(colors, "red")
-
-	fmt.Println(colors)
+func printMap(c map[string]string) {
+	// for key, value := range map
+	for color, hex := range c {
+		fmt.Println("Hex code for", color, "is", hex)
+	}
 }
