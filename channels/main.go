@@ -33,16 +33,16 @@ func main() {
 	// Without channel, main thread finishes before child threads
 	c := make(chan string)
 
+	// forEach() in JavaScript
 	for _, link := range links {
 		// Create a new thread to run this function
 		go checkLink(link, c)
 	}
 
-	fmt.Println(<-c)
-	fmt.Println(<-c)
-	fmt.Println(<-c)
-	fmt.Println(<-c)
-	fmt.Println(<-c)
+	// for() in JavaScript
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-c)
+	}
 }
 
 /*
