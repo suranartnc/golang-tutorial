@@ -30,18 +30,32 @@ func main() {
 		"http://amazon.com",
 	}
 
+	// Without channel, main thread finishes before child threads
+	c := make(chan string)
+
 	for _, link := range links {
 		// Create a new thread to run this function
-		go checkLink(link)
+		go checkLink(link, c)
 	}
+
+	fmt.Println(<-c)
 }
 
-func checkLink(link string) {
+/*
+	Channels
+	- channel <- data					= send data to channel
+	- variable <- channel 		= wait for data from channel, then assign it to a variable
+	- fmt.Println(<-channel)	= wait for data from channel, then log it out
+*/
+
+func checkLink(link string, c chan string) {
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Println(link, "might be down!")
+		c <- "Might be down I think"
 		return
 	}
 
 	fmt.Println(link, "is up!")
+	c <- "Yep its up"
 }
