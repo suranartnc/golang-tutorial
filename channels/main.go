@@ -5,20 +5,6 @@ import (
 	"net/http"
 )
 
-func main() {
-	links := []string{
-		"http://google.com",
-		"http://facebook.com",
-		"http://stackoverflow.com",
-		"http://golang.org",
-		"http://amazon.com",
-	}
-
-	for _, link := range links {
-		checkLink(link)
-	}
-}
-
 /*
 	Go Routines (Threads in Go)
 	- Main routine created when we launched our program
@@ -33,10 +19,22 @@ func main() {
 
 	Parallelism
 	- Use multiple CPU Core to execute multiple threads at the same time
-
-	Create a new thread to run this function
-	go checkLink(link)
 */
+
+func main() {
+	links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	for _, link := range links {
+		// Create a new thread to run this function
+		go checkLink(link)
+	}
+}
 
 func checkLink(link string) {
 	_, err := http.Get(link)
