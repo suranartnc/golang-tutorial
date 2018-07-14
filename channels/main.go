@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 /*
@@ -33,22 +34,14 @@ func main() {
 	// Without channel, main thread finishes before child threads
 	c := make(chan string)
 
-	// forEach() in JavaScript
 	for _, link := range links {
 		// Create a new thread to run this function
 		go checkLink(link, c)
 	}
 
-	// for() forever
-	// for {
-	// 	// Wait for link from channel, then check status of it again and again
-	// 	go checkLink(<-c, c)
-	// }
-
-	// Wait for channel c to return some value,
-	// then assign it to variable l,
-	// then run the body of the for loop
 	for l := range c {
+		// Pause main thread for 5 seconds
+		time.Sleep(5 * time.Second)
 		go checkLink(l, c)
 	}
 }
