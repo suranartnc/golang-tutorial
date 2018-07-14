@@ -39,10 +39,17 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	// for() eternal
-	for {
-		// Wait for link from channel, then check status of it again and again
-		go checkLink(<-c, c)
+	// for() forever
+	// for {
+	// 	// Wait for link from channel, then check status of it again and again
+	// 	go checkLink(<-c, c)
+	// }
+
+	// Wait for channel c to return some value,
+	// then assign it to variable l,
+	// then run the body of the for loop
+	for l := range c {
+		go checkLink(l, c)
 	}
 }
 
