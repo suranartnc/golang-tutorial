@@ -25,10 +25,10 @@ import (
 func main() {
 	links := []string{
 		"http://google.com",
-		// "http://facebook.com",
-		// "http://stackoverflow.com",
-		// "http://golang.org",
-		// "http://amazon.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
 	}
 
 	// Without channel, main thread finishes before child threads
@@ -40,11 +40,11 @@ func main() {
 	}
 
 	for l := range c {
-		go func() {
+		go func(link string) {
 			// Pause this child thread for 5 seconds
 			time.Sleep(5 * time.Second)
-			checkLink(l, c)
-		}()
+			checkLink(link, c)
+		}(l)
 	}
 }
 
